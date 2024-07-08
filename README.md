@@ -35,8 +35,7 @@ Gradually increases their bid each round until a threshold is reached, then rese
 Installation
 To run the game, clone this repository and ensure you have Python installed. Navigate to the directory containing the game files and run:
 
-bash
-Copy code
 python main.py
-Contributing
+
+
 Contributions to AlgoBet are welcome. Please feel free to fork the repository, make changes, and submit pull requests. You can also open issues for bugs you've found or features you think would be beneficial.
