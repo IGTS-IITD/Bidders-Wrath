@@ -1,6 +1,6 @@
-from players import RandomPlayer
+from players import RandomPlayer, Aggressive, AdaptivePlayer, AnalyticalPlayer, ConservativePlayer
 
-players = [RandomPlayer(), RandomPlayer(), RandomPlayer(), RandomPlayer()]
+players = [RandomPlayer(), ConservativePlayer(), AdaptivePlayer(), Aggressive()]
 
 class Game:
     def __init__(self, players):
@@ -64,5 +64,5 @@ class Game:
             self.play_round()
 
 start_game = Game(players)
-start_game.play_game(5)
+start_game.play_game(200)
 print(start_game)
