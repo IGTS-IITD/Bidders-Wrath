@@ -1,6 +1,6 @@
-from players import RandomPlayer
+from players import RandomPlayer, Aggressive, AdaptivePlayer, ConservativePlayer
 
-players = [RandomPlayer(), RandomPlayer(), RandomPlayer(), RandomPlayer()]
+players = [RandomPlayer(), ConservativePlayer(), AdaptivePlayer(), Aggressive()]
 
 class Game:
     def __init__(self, players):
@@ -15,11 +15,13 @@ class Game:
         current_bids = []
         declines = 0
         purse = 50
+        totalscores = [player[1] for player in self.players]
+        print(f'Total Scores: {totalscores}')
 
         print(f'Round {self.rounds_played + 1}')
 
         for player in self.players:
-            bid = player[0].bid(purse, current_bids)
+            bid = player[0].bid(purse, current_bids, totalscores)
             print(f'{player[0].name} bids {bid}')
             if bid <= -1:
                 bid = -1
@@ -64,5 +66,5 @@ class Game:
             self.play_round()
 
 start_game = Game(players)
-start_game.play_game(5)
+start_game.play_game(200)
 print(start_game)
