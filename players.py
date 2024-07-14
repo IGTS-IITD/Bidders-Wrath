@@ -19,7 +19,7 @@ class Aggressive:
     self.score = 0
 
   def bid(self, purse, bids, totalscores):
-    if (purse<20): 
+    if (purse<20):
       return -1
     if len(bids) == 0:
       return 30
@@ -69,4 +69,62 @@ class AdaptivePlayer:
 
     def round_result(self, my_chance, bids, results):
         self.score += results[my_chance-1]
-        
+
+class Sadist:
+    def __init__(self):
+        self.name = 'Sadist'
+        self.score = 0
+
+    def bid(self, purse, current_bids, totalscores):
+        chance=1+len(current_bids)
+        dec=current_bids.count(-1)
+
+        if chance==4:
+            if dec==0:
+              return purse
+            return -1
+        if chance==3:
+            if purse>=current_bids[0] or purse>=current_bids[1]:
+              return purse
+            return -1
+        if chance==2:
+            if dec==0:
+              # if current_bids[0]>=24:
+              #   return current_bids[0]
+              return current_bids[0]-1
+            return -1
+        return 24
+    def round_result(self, my_chance, bids, results):
+        self.score += results[my_chance-1]
+
+
+class Repeater:
+    def __init__(self):
+        self.name = 'Repeater'
+        self.score = 0
+        self.round_count = 0
+
+    def bid(self, purse, current_bids, totalscores):
+        self.round_count += 1
+        chance=1+len(current_bids)
+        dec=current_bids.count(-1)
+        if chance!=1:
+          if purse<current_bids[-1]:
+            return -1
+          return current_bids[-1]-1
+        return 20
+
+    def round_result(self, my_chance, bids, results):
+        self.score += results[my_chance-1]
+
+class Me:
+    def __init__(self):
+        self.name = 'Me'
+        self.score = 0
+        self.round_count = 0
+
+    def bid(self, purse, current_bids, totalscores):
+        return int(input())
+
+    def round_result(self, my_chance, bids, results):
+        self.score += results[my_chance-1]

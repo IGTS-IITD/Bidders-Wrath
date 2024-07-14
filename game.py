@@ -1,6 +1,6 @@
-from players import RandomPlayer, Aggressive, AdaptivePlayer, ConservativePlayer
+from players import Me, RandomPlayer, Aggressive, AdaptivePlayer, ConservativePlayer, Sadist, Repeater
 
-players = [RandomPlayer(), ConservativePlayer(), AdaptivePlayer(), Aggressive()]
+players = [Sadist(), Me(), AdaptivePlayer(), Aggressive()]
 
 class Game:
     def __init__(self, players):
